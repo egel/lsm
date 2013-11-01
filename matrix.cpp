@@ -59,6 +59,7 @@ matrix::matrix(int r, int c)
  * Note!!! Always end with semicolon ;
  * Format: 1,3.5,-4;300,200,33;0,-2.5,2323.5;
  */
+/*
 matrix::matrix(string inputData)
 {
     int comaCounter=0, semicolonCounter=0;
@@ -79,10 +80,11 @@ matrix::matrix(string inputData)
     allocateArrays();
     setData(1);
 }
+*/
 
 matrix::~matrix(void)
 {
-    for (int i=0; i<rows; ++i) {
+    for (int i=0; i<rows; i++) {
         delete [] data[i];
     }
     delete [] data;
@@ -95,7 +97,7 @@ matrix::~matrix(void)
 void matrix::allocateArrays()
 {
     data = new double *[rows];
-    for(int i=0; i<rows; ++i)
+    for(int i=0; i<rows; i++)
     {
         data[i] = new double[cols];
     }
@@ -136,15 +138,16 @@ bool matrix::isInteger(const string &s)
 */
 void matrix::setData(double number)
 {
-    for(int i=0; i<rows; ++i)
+    for(int i=0; i<rows; i++)
     {
-        for(int j=0; j<cols; ++j)
+        for(int j=0; j<cols; j++)
         {
             data[i][j] = number;
         }
     }
 }
 
+//TODO
 void matrix::setData(string inputData)
 {
     // a11, a12, a13; a21, a22, a23; a31, a32, a33;
@@ -170,9 +173,9 @@ void matrix::setData(string inputData)
         throw "Liczba pól w macierzy nie pokrywa się z ilością wprowadzonych danych"; 
     
     int r=0;
-    for(int i=0; i<rows; ++i)
+    for(int i=0; i<rows; i++)
     {
-        for(int j=0; j<cols; ++j)
+        for(int j=0; j<cols; j++)
         {
             data[i][j] = vect[r];
             r++;
@@ -183,9 +186,9 @@ void matrix::setData(string inputData)
 void matrix::setDataRandomNumbers()
 {
     srand(time(NULL));
-    for(int i=0; i<rows; ++i)
+    for(int i=0; i<rows; i++)
     {
-        for(int j=0; j<cols; ++j)
+        for(int j=0; j<cols; j++)
         {
             data[i][j] = (rand()%899 + 100);
         }
@@ -195,11 +198,11 @@ void matrix::setDataRandomNumbers()
 matrix matrix::operator+(int number)
 {
     matrix result(this->rows, this->cols);
-    for(int i=0; i<result.rows; ++i)
+    for(int i=0; i<result.rows; i++)
     {
-        for(int j=0; j<result.cols; ++j)
+        for(int j=0; j<result.cols; j++)
         {
-            result.data[i][j] += number;
+            result.data[i][j] = result.data[i][j] + number;
         }
     }
     return result;
@@ -208,9 +211,9 @@ matrix matrix::operator+(int number)
 matrix matrix::operator-()
 {
     matrix result;
-    for(int i=0; i<result.rows; ++i)
+    for(int i=0; i<result.rows; i++)
     {
-        for(int j=0; j<result.cols; ++j)
+        for(int j=0; j<result.cols; j++)
         {
             result.data[i][j] = -data[i][j];
         }
