@@ -233,7 +233,8 @@ matrix &matrix::operator=(const matrix &m)
     else
     {
         this-> ~matrix();
-        rows=m.rows; cols=m.cols;
+        rows=m.rows; 
+        cols=m.cols;
         for (int i=0; i<rows; i++)
         {
             for (int j=0; j<cols; j++)
@@ -245,6 +246,18 @@ matrix &matrix::operator=(const matrix &m)
     }
 }
 
+matrix &matrix::operator+=(const matrix &m)
+{
+    // x+=y <=> x=x+y
+    for(int i=0; i<rows; i++)
+    {
+        for(int j=0; j<cols; j++)
+        {
+            data[i][j] = m.data[i][j];
+        }
+    }
+    return *this;
+}
 
 matrix matrix::operator+(double number)
 {
@@ -299,7 +312,6 @@ void matrix::printSize()
 
 void matrix::print()
 {
-    cout << endl;
     for(int i=0; i<rows; i++)
     {
         cout << "\t| ";
@@ -312,6 +324,7 @@ void matrix::print()
         {
             cout << "| ";
             printSize();
+            cout << endl;
         }
         else
         {

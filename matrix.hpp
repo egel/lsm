@@ -47,6 +47,7 @@ class matrix
         void setDataRandomNumbers();
         
         matrix &operator=(const matrix &m);
+        matrix &operator+=(const matrix &m);
         matrix operator+(double number);
         matrix operator-();
         matrix multiply(double);

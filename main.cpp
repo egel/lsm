@@ -23,20 +23,25 @@ int main()
         matrix X;
         matrix Y(2,6);
 
-        cout << "macierz X";
+        cout << "macierz X" << endl;
         X.print();
         cout << endl;
 
-        cout << "macierz trzecia";
+        cout << "macierz Y" << endl;
         Y.print();
         cout << endl;
-
+        
+        cout << "macierz X przed wprowadzeniem danych" << endl;
         X.print();
         X.setData("14,45 ,3, 78,90,58,34,234,34");
+        cout <<endl<< "po wprowadzeniu danych" <<endl;
         X.print();
         
+        cout << endl << "macierz X" << endl;
         X.print();
+        cout << endl << "...przypisanie y = x..." << endl;
         Y = X;
+        cout << "macierz Y" << endl;
         Y.print();
 
     }
