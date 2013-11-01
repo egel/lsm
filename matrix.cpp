@@ -72,7 +72,13 @@ matrix::matrix(int r, int c)
 :rows(r), cols(c)
 {
     allocateArrays();
-    setData(0);
+    for (int i=0; i<rows; i++) 
+    {
+        for (int j=0; j<cols; j++) 
+        {
+            data[i][j] = 0;
+        }
+    }
 }
 
 // Default matrix 3x3 with random numbers
@@ -80,7 +86,13 @@ matrix::matrix(void)
 :rows(3), cols(3)
 {
     allocateArrays();
-    setDataRandomNumbers();
+    for (int i=0; i<rows; i++) 
+    {
+        for (int j=0; j<cols; j++) 
+        {
+            data[i][j] = 0;
+        }
+    }
 }
 
 // Copy constructor
@@ -137,12 +149,12 @@ int matrix::getCols()
 }
 
 //TODO
-bool matrix::isNumber(std::string s)
+bool matrix::isNumber(const string &s)
 {
     return true;
 }
 /*
-bool matrix::isInteger(const string &s)
+bool matrix::isInteger(const string &s)s
 {
     boost::regex integer("(\\+|-)?[[:digit:]]+");
 
@@ -211,7 +223,30 @@ void matrix::setDataRandomNumbers()
     }
 }
 
-matrix matrix::operator+(int number)
+matrix &matrix::operator=(const matrix &m)
+{
+    // avoid self assignment
+    if(this == &m)
+    {
+        return *this;
+    }
+    else
+    {
+        this-> ~matrix();
+        rows=m.rows; cols=m.cols;
+        for (int i=0; i<rows; i++)
+        {
+            for (int j=0; j<cols; j++)
+            {
+                data[i][j] = m.data[i][j];
+            }
+        }
+        return *this;
+    }
+}
+
+
+matrix matrix::operator+(double number)
 {
     matrix result(this->rows, this->cols);
     for(int i=0; i<result.rows; i++)

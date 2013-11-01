@@ -37,19 +37,23 @@ class matrix
         int getRows();
         int getCols();
         
-        bool isNumber(string str);
-        bool isInteger(const string &str);
-        bool isFloat(string str);
+        // TODO
+        bool isNumber(const string &str);
+        // TODO bool isInteger(const string &str);
+        // TODO bool isFloat(const string &str);
 
         void setData(double number);
         void setData(string inputData);
         void setDataRandomNumbers();
-        matrix operator+(int number);
+        
+        matrix &operator=(const matrix &m);
+        matrix operator+(double number);
         matrix operator-();
         matrix multiply(double);
         matrix multiply(matrix);
         matrix transpose(matrix);
         double determinant(double);
+        
         void printSize();
         void print();
 };

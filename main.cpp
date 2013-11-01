@@ -20,25 +20,24 @@ int main()
 {
     try
     {
-        matrix matrixOne;
-        matrix matrixThree(2,6);
-        matrix x(3,3);
+        matrix X;
+        matrix Y(2,6);
 
-        cout << "macierz pierwsza";
-        matrixOne.print();
+        cout << "macierz X";
+        X.print();
         cout << endl;
 
         cout << "macierz trzecia";
-        matrixThree.print();
+        Y.print();
         cout << endl;
 
-        matrixOne.print();
-        matrixOne.setData("14,45 ,3, 78,90,58,34,234,34");
-        matrixOne.print();
+        X.print();
+        X.setData("14,45 ,3, 78,90,58,34,234,34");
+        X.print();
         
-        x.print();
-        x = x + 2;
-        x.print();
+        X.print();
+        Y = X;
+        Y.print();
 
     }
     catch (const char* msg) 
