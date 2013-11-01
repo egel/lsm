@@ -15,9 +15,6 @@ Functions:
 
 ## Matrix Class Api
 
-Constructors
-
-
 Functions:
 
-  - Add (+)
+  - comming soon
