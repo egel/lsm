@@ -1,5 +1,5 @@
 /* 
- * File:   matrix.cpp
+ * File:   Matrix.cpp
  * Author: maciek
  * 
  * Created on 29 październik 2013, 17:16
@@ -13,7 +13,7 @@
 #include <ctime>
 #include <boost/regex.hpp>
 
-#include "matrix.hpp"
+#include "Matrix.hpp"
 
 using namespace std;
 
@@ -24,14 +24,14 @@ using namespace std;
  * 
  * Functions:
  *      - Set Data (Specific number, Random, String of data)
- *      - Change sign of matrix for opposite (example: -A)
- *      - Add (matrix)
- *      - Subtract (matrix)
- *      - Multiply (matrix by matrix, matrix by number)
+ *      - Change sign of Matrix for opposite (example: -A)
+ *      - Add (Matrix)
+ *      - Subtract (Matrix)
+ *      - Multiply (Matrix by Matrix, Matrix by number)
  *      - Transpose ()
  *      - Inverse ()
- *      - Calculate determinant of the matrix
- *      - Calculate moda of the matrix
+ *      - Calculate determinant of the Matrix
+ *      - Calculate moda of the Matrix
  */
 
 /*
@@ -39,13 +39,13 @@ using namespace std;
  */
 
 /* TODO !!!!!!!!!!!!!!!!!!!!!!!!!!
- * Create matrix with data
+ * Create Matrix with data
  * 
  * Note!!! Always end with semicolon ;
  * Format: 1,3.5,-4;300,200,33;0,-2.5,2323.5;
  */
 /*
-matrix::matrix(string inputData)
+Matrix::Matrix(string inputData)
 {
     int comaCounter=0, semicolonCounter=0;
     
@@ -67,8 +67,8 @@ matrix::matrix(string inputData)
 }
 */
 
-// Create matrix with proper col and rows; filed by 0 default
-matrix::matrix(int r, int c)
+// Create Matrix with proper col and rows; filed by 0 default
+Matrix::Matrix(int r, int c)
 :rows(r), cols(c)
 {
     allocateArrays();
@@ -81,8 +81,8 @@ matrix::matrix(int r, int c)
     }
 }
 
-// Default matrix 3x3 with random numbers
-matrix::matrix(void)
+// Default Matrix 3x3 with random numbers
+Matrix::Matrix(void)
 :rows(3), cols(3)
 {
     allocateArrays();
@@ -96,7 +96,7 @@ matrix::matrix(void)
 }
 
 // Copy constructor
-matrix::matrix(const matrix &m)
+Matrix::Matrix(const Matrix &m)
 :rows(m.rows), cols(m.cols)
 {
     allocateArrays();
@@ -109,7 +109,7 @@ matrix::matrix(const matrix &m)
     }
 }
 
-matrix::~matrix(void)
+Matrix::~Matrix(void)
 {
     for (int i=0; i<rows; i++) {
         delete [] data[i];
@@ -121,7 +121,7 @@ matrix::~matrix(void)
  * Functions
  */
 // Private ---------------------------------------------------------------------
-void matrix::allocateArrays()
+void Matrix::allocateArrays()
 {
     data = new double *[rows];
     for(int i=0; i<rows; i++)
@@ -130,7 +130,7 @@ void matrix::allocateArrays()
     }
 }
 
-void matrix::removeWhiteCharacters(string &str)
+void Matrix::removeWhiteCharacters(string &str)
 {
     str.erase(remove_if(str.begin(), str.end(), ::isspace), str.end());
 }
@@ -138,23 +138,23 @@ void matrix::removeWhiteCharacters(string &str)
 
 
 // Public ----------------------------------------------------------------------
-int matrix::getRows()
+int Matrix::getRows()
 {
     return rows;
 }
 
-int matrix::getCols()
+int Matrix::getCols()
 {
     return cols;
 }
 
 //TODO
-bool matrix::isNumber(const string &s)
+bool Matrix::isNumber(const string &s)
 {
     return true;
 }
 /*
-bool matrix::isInteger(const string &s)s
+bool Matrix::isInteger(const string &s)s
 {
     boost::regex integer("(\\+|-)?[[:digit:]]+");
 
@@ -164,7 +164,7 @@ bool matrix::isInteger(const string &s)s
         return false;
 }
 */
-void matrix::setData(double number)
+void Matrix::setData(double number)
 {
     for(int i=0; i<rows; i++)
     {
@@ -176,7 +176,7 @@ void matrix::setData(double number)
 }
 
 //TODO
-void matrix::setData(string inputData)
+void Matrix::setData(string inputData)
 {
     // a11, a12, a13; a21, a22, a23; a31, a32, a33;
     // ? sprawdzenie czy wartości sa liczbami
@@ -196,7 +196,7 @@ void matrix::setData(string inputData)
             ss.ignore();
     }
     
-    // check if number of data equal matrix cells
+    // check if number of data equal Matrix cells
     if(cols*rows != vect.size())
         throw "Liczba pól w macierzy nie pokrywa się z ilością wprowadzonych danych"; 
     
@@ -211,7 +211,7 @@ void matrix::setData(string inputData)
     }
 }
 
-void matrix::setDataRandomNumbers()
+void Matrix::setDataRandomNumbers()
 {
     srand(time(NULL));
     for(int i=0; i<rows; i++)
@@ -223,7 +223,7 @@ void matrix::setDataRandomNumbers()
     }
 }
 
-matrix &matrix::operator=(const matrix &m)
+Matrix &Matrix::operator=(const Matrix &m)
 {
     // avoid self assignment
     if(this == &m)
@@ -232,9 +232,10 @@ matrix &matrix::operator=(const matrix &m)
     }
     else
     {
-        this-> ~matrix();
-        rows=m.rows; 
-        cols=m.cols;
+        this-> ~Matrix();
+        rows = m.rows; 
+        cols = m.cols;
+        allocateArrays();
         for (int i=0; i<rows; i++)
         {
             for (int j=0; j<cols; j++)
@@ -246,7 +247,7 @@ matrix &matrix::operator=(const matrix &m)
     }
 }
 
-matrix &matrix::operator+=(const matrix &m)
+Matrix &Matrix::operator+=(const Matrix &m)
 {
     // x+=y <=> x=x+y
     for(int i=0; i<rows; i++)
@@ -259,22 +260,15 @@ matrix &matrix::operator+=(const matrix &m)
     return *this;
 }
 
-matrix matrix::operator+(double number)
+Matrix Matrix::operator+(const Matrix &m)
 {
-    matrix result(this->rows, this->cols);
-    for(int i=0; i<result.rows; i++)
-    {
-        for(int j=0; j<result.cols; j++)
-        {
-            result.data[i][j] = result.data[i][j] + number;
-        }
-    }
-    return result;
+    Matrix temp(*this); // use copy constructor
+    return (temp+=m);
 }
 
-matrix matrix::operator-()
+Matrix Matrix::operator-()
 {
-    matrix result;
+    Matrix result;
     for(int i=0; i<result.rows; i++)
     {
         for(int j=0; j<result.cols; j++)
@@ -285,32 +279,32 @@ matrix matrix::operator-()
     return result;
 }
 
-matrix matrix::multiply(double)
+Matrix Matrix::multiply(double)
 {
 
 }
 
-matrix matrix::multiply(matrix)
+Matrix Matrix::multiply(Matrix)
 {
 
 }
 
-matrix matrix::transpose(matrix)
+Matrix Matrix::transpose(Matrix)
 {
 
 }
 
-double matrix::determinant(double)
+double Matrix::determinant(double)
 {
     return 0;
 }
 
-void matrix::printSize()
+void Matrix::printSize()
 {
     cout << rows << " x " << cols;
 }
 
-void matrix::print()
+void Matrix::print()
 {
     for(int i=0; i<rows; i++)
     {
@@ -319,7 +313,7 @@ void matrix::print()
         {
             cout << "" << data[i][j] << " ";
         }
-        // print Size of matrix on the end
+        // print Size of Matrix on the end
         if(i==rows-1)
         {
             cout << "| ";

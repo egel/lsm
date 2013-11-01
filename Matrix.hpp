@@ -1,5 +1,5 @@
 /* 
- * File:   matrix.hpp
+ * File:   Matrix.hpp
  * Author: maciek
  *
  * Created on 29 październik 2013, 17:16
@@ -13,15 +13,15 @@
 
 using namespace std;
 
-class matrix
+class Matrix
 {
     //konstruktory i destruktory
     public:
-        matrix(int rows, int cols);
-        // TODO matrix(string inputData);
-        matrix(const matrix &m);
-        matrix();
-        ~matrix(void);
+        Matrix(int rows, int cols);
+        // TODO Matrix(string inputData);
+        Matrix(const Matrix &m);
+        Matrix();
+        ~Matrix(void);
 
     // zmienne
     private:
@@ -46,13 +46,13 @@ class matrix
         void setData(string inputData);
         void setDataRandomNumbers();
         
-        matrix &operator=(const matrix &m);
-        matrix &operator+=(const matrix &m);
-        matrix operator+(double number);
-        matrix operator-();
-        matrix multiply(double);
-        matrix multiply(matrix);
-        matrix transpose(matrix);
+        Matrix &operator=(const Matrix &m);
+        Matrix &operator+=(const Matrix &m);
+        Matrix operator+(const Matrix &m);
+        Matrix operator-();
+        Matrix multiply(double);
+        Matrix multiply(Matrix);
+        Matrix transpose(Matrix);
         double determinant(double);
         
         void printSize();

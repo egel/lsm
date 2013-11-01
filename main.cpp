@@ -12,7 +12,7 @@
 #include <sstream>
 #include <typeinfo>
 
-#include "matrix.hpp"
+#include "Matrix.hpp"
 
 using namespace std;
 
@@ -20,8 +20,8 @@ int main()
 {
     try
     {
-        matrix X;
-        matrix Y(2,6);
+        Matrix X;
+        Matrix Y(2,6);
 
         cout << "macierz X" << endl;
         X.print();

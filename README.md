@@ -1,7 +1,7 @@
-# Least Squares Method <small>Regression analysis</small>
+# Least Squares Method
 
-Program written in C++ to calculate method of least squares.
-It's based on matrix class to estimate line regresion.
+Program written in C++ to calculate method of least squares (regression analysis).
+It's based on matrix class to estimate line regresion of inputed data.
 
 ## IDE
 
