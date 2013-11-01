@@ -37,23 +37,8 @@ using namespace std;
 /*
  * Constructors & Destructors
  */
-// Default matrix 3x3 with random numbers
-matrix::matrix(void)
-:rows(3), cols(3)
-{
-    allocateArrays();
-    setDataRandomNumbers();
-}
 
-// Create matrix with proper col and rows; filed by 0 default
-matrix::matrix(int r, int c)
-:rows(r), cols(c)
-{
-    allocateArrays();
-    setData(0);
-}
-
-/*
+/* TODO !!!!!!!!!!!!!!!!!!!!!!!!!!
  * Create matrix with data
  * 
  * Note!!! Always end with semicolon ;
@@ -81,6 +66,36 @@ matrix::matrix(string inputData)
     setData(1);
 }
 */
+
+// Create matrix with proper col and rows; filed by 0 default
+matrix::matrix(int r, int c)
+:rows(r), cols(c)
+{
+    allocateArrays();
+    setData(0);
+}
+
+// Default matrix 3x3 with random numbers
+matrix::matrix(void)
+:rows(3), cols(3)
+{
+    allocateArrays();
+    setDataRandomNumbers();
+}
+
+// Copy constructor
+matrix::matrix(const matrix &m)
+:rows(m.rows), cols(m.cols)
+{
+    allocateArrays();
+    for(int i=0; i<rows; i++)
+    {
+        for(int j=0; j<cols; j++)
+        {
+            data[i][j] = m.data[i][j];
+        }
+    }
+}
 
 matrix::~matrix(void)
 {
@@ -121,6 +136,7 @@ int matrix::getCols()
     return cols;
 }
 
+//TODO
 bool matrix::isNumber(std::string s)
 {
     return true;

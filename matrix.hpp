@@ -17,9 +17,10 @@ class matrix
 {
     //konstruktory i destruktory
     public:
-        matrix();
         matrix(int rows, int cols);
-        matrix(string inputData);
+        // TODO matrix(string inputData);
+        matrix(const matrix &m);
+        matrix();
         ~matrix(void);
 
     // zmienne
