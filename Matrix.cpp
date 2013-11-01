@@ -67,35 +67,22 @@ Matrix::Matrix(string inputData)
 }
 */
 
-// Create Matrix with proper col and rows; filed by 0 default
+// Matrix fix col and rows filed with zeros default
 Matrix::Matrix(int r, int c)
 :rows(r), cols(c)
 {
     allocateArrays();
-    for (int i=0; i<rows; i++) 
-    {
-        for (int j=0; j<cols; j++) 
-        {
-            data[i][j] = 0;
-        }
-    }
+    setData(0);
 }
 
-// Default Matrix 3x3 with random numbers
+// Default Matrix 3x3 filled with zeros default
 Matrix::Matrix(void)
 :rows(3), cols(3)
 {
     allocateArrays();
-    for (int i=0; i<rows; i++) 
-    {
-        for (int j=0; j<cols; j++) 
-        {
-            data[i][j] = 0;
-        }
-    }
+    setData(0);
 }
 
-// Copy constructor
 Matrix::Matrix(const Matrix &m)
 :rows(m.rows), cols(m.cols)
 {
@@ -254,7 +241,7 @@ Matrix &Matrix::operator+=(const Matrix &m)
     {
         for(int j=0; j<cols; j++)
         {
-            data[i][j] = m.data[i][j];
+            data[i][j] += m.data[i][j];
         }
     }
     return *this;

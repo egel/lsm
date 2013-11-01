@@ -43,7 +43,11 @@ int main()
         Y = X;
         cout << "macierz Y" << endl;
         Y.print();
-
+        
+        cout << endl << "Dodanie Y do X -> X+=Y" << endl;
+        X+=Y;
+        X.print();
+        
     }
     catch (const char* msg) 
     {
