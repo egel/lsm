@@ -317,9 +317,10 @@ ostream &operator<<(ostream &out, const Matrix &m)
 {
     for(int i=0; i<m.rows; i++)
     {
+        out << "| ";
         for(int j=0; j<m.cols; j++)
             out << "" << m.data[i][j] << " ";
-        out << endl;
+        out << "|" << endl;
     }
     return out;
 }
