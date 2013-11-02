@@ -20,14 +20,13 @@ int main()
 {
     try
     {
-        Matrix X;
-        Matrix Y(2,6);
+        Matrix X, Y(2,6);
 
-        cout << "macierz X" << endl;
+        cout << "Macierz X" << endl;
         X.print();
         cout << endl;
 
-        cout << "macierz Y" << endl;
+        cout << "Macierz Y" << endl;
         Y.print();
         cout << endl;
         
@@ -47,6 +46,11 @@ int main()
         cout << endl << "Dodanie Y do X -> X+=Y" << endl;
         X+=Y;
         X.print();
+        cout << endl << "Odjęcie Y do X -> X-=Y" << endl;
+        X-=Y;
+        cout << X << endl;
+        
+        
         
     }
     catch (const char* msg) 

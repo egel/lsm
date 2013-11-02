@@ -185,7 +185,7 @@ void Matrix::setData(string inputData)
     
     // check if number of data equal Matrix cells
     if(cols*rows != vect.size())
-        throw "Liczba pól w macierzy nie pokrywa się z ilością wprowadzonych danych"; 
+        throw "The number of fields in the matrix does not coincide with the amount of input data"; 
     
     int r=0;
     for(int i=0; i<rows; i++)
@@ -253,28 +253,25 @@ Matrix Matrix::operator+(const Matrix &m)
     return (temp+=m);
 }
 
-Matrix Matrix::operator-()
+Matrix &Matrix::operator-=(const Matrix &m)
 {
-    Matrix result;
-    for(int i=0; i<result.rows; i++)
+    // x-=y <=> x=x-y
+    for(int i=0; i<rows; i++)
     {
-        for(int j=0; j<result.cols; j++)
+        for(int j=0; j<cols; j++)
         {
-            result.data[i][j] = -data[i][j];
+            data[i][j] -= m.data[i][j];
         }
     }
-    return result;
+    return *this;
 }
 
-Matrix Matrix::multiply(double)
+Matrix Matrix::operator-(const Matrix &m)
 {
-
+    Matrix temp(*this);
+    return (temp-=m);
 }
 
-Matrix Matrix::multiply(Matrix)
-{
-
-}
 
 Matrix Matrix::transpose(Matrix)
 {
@@ -314,4 +311,15 @@ void Matrix::print()
 
     }
 
+}
+
+ostream &operator<<(ostream &out, const Matrix &m)
+{
+    for(int i=0; i<m.rows; i++)
+    {
+        for(int j=0; j<m.cols; j++)
+            out << "" << m.data[i][j] << " ";
+        out << endl;
+    }
+    return out;
 }

@@ -49,15 +49,20 @@ class Matrix
         Matrix &operator=(const Matrix &m);
         Matrix &operator+=(const Matrix &m);
         Matrix operator+(const Matrix &m);
-        Matrix operator-();
-        Matrix multiply(double);
-        Matrix multiply(Matrix);
+        Matrix &operator-=(const Matrix &m);
+        Matrix operator-(const Matrix &m);
+        
+        //TODO 
         Matrix transpose(Matrix);
-        double determinant(double);
+        double determinant(double);     
         
         void printSize();
         void print();
+        
+        // Friend functions
+        friend ostream &operator<<
+            (ostream &out, const Matrix &m);
+        
 };
-
 #endif	/* MATRIX_HPP */
 
