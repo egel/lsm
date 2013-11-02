@@ -34,9 +34,6 @@ class Matrix
         void removeWhiteCharacters(string &str);
 
     public:
-        int getRows();
-        int getCols();
-        
         // TODO
         bool isNumber(const string &str);
         // TODO bool isInteger(const string &str);

@@ -22,31 +22,23 @@ int main()
     {
         Matrix X, Y(2,6);
 
-        cout << "Macierz X" << endl;
-        X.print();
-        cout << endl;
+        cout << "Macierz X" << X << endl;
 
-        cout << "Macierz Y" << endl;
-        Y.print();
-        cout << endl;
+        cout << "Macierz Y" << Y << endl;
         
-        cout << "macierz X przed wprowadzeniem danych" << endl;
-        X.print();
+        cout << "Macierz X przed wprowadzeniem danych" << X << endl;
         X.setData("14,45 ,3, 78,90,58,34,234,34");
-        cout <<endl<< "po wprowadzeniu danych" <<endl;
-        X.print();
+        cout << "...po wprowadzeniu danych" << X << endl;
         
-        cout << endl << "macierz X" << endl;
-        X.print();
-        cout << endl << "...przypisanie y = x..." << endl;
+        cout << "Macierz X" << X;
+        cout << "...przypisanie y = x" << endl;
         Y = X;
-        cout << "macierz Y" << endl;
-        Y.print();
+        cout << "Macierz Y" << Y << endl;
         
-        cout << endl << "Dodanie Y do X -> X+=Y" << endl;
+        cout << "Dodanie macierzy Y do macierzy X -> X+=Y" << endl;
         X+=Y;
-        X.print();
-        cout << endl << "Odjęcie Y do X -> X-=Y" << endl;
+        cout << X << endl;
+        cout << "Odjęcie macierzy Y od macierzy X -> X-=Y" << endl;
         X-=Y;
         cout << X << endl;
         

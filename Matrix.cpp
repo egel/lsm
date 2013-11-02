@@ -125,16 +125,6 @@ void Matrix::removeWhiteCharacters(string &str)
 
 
 // Public ----------------------------------------------------------------------
-int Matrix::getRows()
-{
-    return rows;
-}
-
-int Matrix::getCols()
-{
-    return cols;
-}
-
 //TODO
 bool Matrix::isNumber(const string &s)
 {
@@ -308,13 +298,12 @@ void Matrix::print()
         {
             cout << "|" << endl;
         }
-
     }
-
 }
 
 ostream &operator<<(ostream &out, const Matrix &m)
 {
+    out << endl;
     for(int i=0; i<m.rows; i++)
     {
         out << "| ";
