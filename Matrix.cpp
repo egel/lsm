@@ -130,6 +130,23 @@ bool Matrix::isNumber(const string &s)
 {
     return true;
 }
+
+/*
+ * Return value of the last element with the highest value
+ */
+double Matrix::highestValue()
+{
+    double result = data[0][0];
+    for (int i=0; i<rows; i++)
+    {
+        for (int j=0; j<cols; j++)
+        {
+            if(result <= data[i][j])
+                result = data[i][j];
+        }
+    }
+    return result;
+}
 /*
 bool Matrix::isInteger(const string &s)s
 {

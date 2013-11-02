@@ -38,6 +38,7 @@ class Matrix
         bool isNumber(const string &str);
         // TODO bool isInteger(const string &str);
         // TODO bool isFloat(const string &str);
+        double highestValue();
 
         void setData(double number);
         void setData(string inputData);

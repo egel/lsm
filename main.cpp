@@ -42,6 +42,7 @@ int main()
         X-=Y;
         cout << X << endl;
         
+        cout << "Najwyższa wartość macierzy X to: " << X.highestValue() << endl;
         
         
     }
