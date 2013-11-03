@@ -319,7 +319,7 @@ void Matrix::print()
 }
 
 ostream &operator<<(ostream &out, const Matrix &m)
-{
+{   
     out << endl;
     for(int i=0; i<m.rows; i++)
     {
@@ -329,4 +329,30 @@ ostream &operator<<(ostream &out, const Matrix &m)
         out << "|" << endl;
     }
     return out;
+}
+
+Matrix operator*(const Matrix &m, const Matrix &n)
+{
+    if(m.cols != n.rows)
+        throw "Column of matrix one not equal rows of matrix two";
+    Matrix result(m.cols, n.rows);
+    for (int i=0; i<result.rows; i++)
+        for (int j=0; j<result.cols; j++)
+            for (int k=0; k<m.cols; k++)
+                result.data[i][j] = m[i][k] * n[k][j];
+    return result;
+}
+
+Matrix operator*(double number, const Matrix &m)
+{
+    Matrix temp(m.rows, m.cols);
+    for (int i=0; i<temp.rows; i++)
+        for (int j=0; j<temp.cols; j++)
+            temp.data[i][j] = number * m.data[i][j];
+    return temp;
+}
+
+Matrix operator*(const Matrix &m, double number)
+{
+    return m * number;
 }

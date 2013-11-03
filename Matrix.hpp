@@ -50,7 +50,7 @@ class Matrix
         Matrix &operator-=(const Matrix &m);
         Matrix operator-(const Matrix &m);
         
-        //TODO 
+        //TODO
         Matrix transpose(Matrix);
         double determinant(double);     
         
@@ -60,6 +60,10 @@ class Matrix
         // Friend functions
         friend ostream &operator<<
             (ostream &out, const Matrix &m);
+        //TODO
+        friend Matrix operator*(const Matrix &m, const Matrix &n);
+        friend Matrix operator*(double, const Matrix &m);
+        friend Matrix operator*(const Matrix &m, double);
         
 };
 #endif	/* MATRIX_HPP */
