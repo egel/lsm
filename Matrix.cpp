@@ -274,6 +274,9 @@ Matrix Matrix::operator+(const Matrix &m)
 Matrix &Matrix::operator-=(const Matrix &m)
 {
     // x-=y <=> x=x-y
+    Matrix temp(*this); 
+    if (isArraysSizeEqual(temp, m) == false)
+        throw "Size of matrices are not equal";
     for(int i=0; i<rows; i++)
     {
         for(int j=0; j<cols; j++)
@@ -346,14 +349,14 @@ Matrix operator*(const Matrix &m, const Matrix &n)
 {
     if(m.cols != n.rows)
         throw "Column of matrix one not equal rows of matrix two";
-    Matrix result(m.cols, n.rows);
+    Matrix result(m.rows, n.cols);
     for (int i=0; i<result.rows; i++)
     {
         for (int j=0; j<result.cols; j++)
         {
             for (int k=0; k<m.cols; k++)
             {
-                result.data[i][j] = m.data[i][k] * n.data[k][j];
+                result.data[i][j] += m.data[i][k] * n.data[k][j];
             }
         }
     }

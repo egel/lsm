@@ -44,6 +44,14 @@ int main()
         
         cout << "Najwyższa wartość macierzy X to: " << X.highestValue() << endl;
         
+        cout << endl << "Utworzenie macierzy A i B" << endl;
+        Matrix a(3,2), b(2,3);
+        a.setData("2,2,3,3,4,4");
+        b.setData("2,3,4,2,3,4");
+        cout << "Macierz a" << a << "Macierz b" << b << endl;
+        cout << "Pomnożenie macierzy a * b i wyświetlenie macierzy c" << endl;
+        Matrix c=b*a;
+        cout << "Macierz c" << c;
         
     }
     catch (const char* msg) 
