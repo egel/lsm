@@ -39,6 +39,7 @@ class Matrix
         // TODO bool isInteger(const string &str);
         // TODO bool isFloat(const string &str);
         double highestValue();
+        friend bool isArraysSizeEqual(Matrix m, Matrix n);
 
         void setData(double number);
         void setData(string inputData);
