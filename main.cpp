@@ -54,7 +54,7 @@ int main()
         cout << "Macierz c" << c;
         
         Matrix Z(3,3);
-        cout << "Potęgowanie macierzy ------------" << endl;
+        cout << "Potęgowanie macierzy --------------------------------" << endl;
         Z.setData("1,2,3,1,2,3,1,2,3");
         cout << endl << "Potęgowanie macierzy Z^0" << endl;
         Z=Z^0;
@@ -64,9 +64,17 @@ int main()
         Z=Z^1;
         cout << Z << endl;
         Z.setData("1,2,3,1,2,3,1,2,3");
+        cout << "Potęgowanie macierzy Z^2" << endl;
+        Z=Z^2;
+        cout << Z << endl;
+        Z.setData("1,2,3,1,2,3,1,2,3");
         cout << "Potęgowanie macierzy Z^3" << endl;
         Z=Z^3;
         cout << Z << endl;
+        
+        cout << "Transponowanie macierzy b" << endl;
+        b = b.transpose();
+        cout << b <<endl;
         
     }
     catch (const char* msg) 

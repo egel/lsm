@@ -49,8 +49,8 @@ class Matrix
         Matrix &operator-=(const Matrix &m);
         Matrix operator-(const Matrix &m);
         
+        Matrix transpose();
         //TODO
-        Matrix transpose(Matrix);
         double determinant(double);     
         
         void printSize();

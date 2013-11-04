@@ -301,9 +301,13 @@ Matrix Matrix::operator-(const Matrix &m)
 }
 
 
-Matrix Matrix::transpose(Matrix)
+Matrix Matrix::transpose()
 {
-
+    Matrix temp(this->cols, this->rows);
+    for(int i=0; i<temp.rows; i++)
+        for(int j=0; j<temp.cols; j++)
+            temp.data[i][j] = this->data[j][i];
+    return temp;
 }
 
 double Matrix::determinant(double)
