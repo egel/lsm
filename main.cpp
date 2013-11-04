@@ -23,7 +23,7 @@ int main()
         Matrix X, Y(2,6);
 
         cout << "Macierz X" << X << endl;
-
+        
         cout << "Macierz Y" << Y << endl;
         
         cout << "Macierz X przed wprowadzeniem danych" << X << endl;
@@ -50,8 +50,23 @@ int main()
         b.setData("2,3,4,2,3,4");
         cout << "Macierz a" << a << "Macierz b" << b << endl;
         cout << "Pomnożenie macierzy a * b i wyświetlenie macierzy c" << endl;
-        Matrix c=b*a;
+        Matrix c=a*b;
         cout << "Macierz c" << c;
+        
+        Matrix Z(3,3);
+        cout << "Potęgowanie macierzy ------------" << endl;
+        Z.setData("1,2,3,1,2,3,1,2,3");
+        cout << endl << "Potęgowanie macierzy Z^0" << endl;
+        Z=Z^0;
+        cout << Z << endl;
+        Z.setData("1,2,3,1,2,3,1,2,3");
+        cout << "Potęgowanie macierzy Z^1" << endl;
+        Z=Z^1;
+        cout << Z << endl;
+        Z.setData("1,2,3,1,2,3,1,2,3");
+        cout << "Potęgowanie macierzy Z^3" << endl;
+        Z=Z^3;
+        cout << Z << endl;
         
     }
     catch (const char* msg) 

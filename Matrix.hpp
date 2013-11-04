@@ -28,18 +28,16 @@ class Matrix
         int rows, cols;
         double **data;
 
-    // deklaracje funkcji
-    protected:
-        void allocateArrays();
-        void removeWhiteCharacters(string &str);
-
     public:
         // TODO
         bool isNumber(const string &str);
         // TODO bool isInteger(const string &str);
         // TODO bool isFloat(const string &str);
         double highestValue();
-        friend bool isArraysSizeEqual(Matrix m, Matrix n);
+        friend bool isMatrixSizeEqual(const Matrix &m, const Matrix &n);
+        friend bool isColsMatrix1EqualRowsMatrix2
+            (const Matrix m, const Matrix n);
+        friend bool isMatrixSquare(const Matrix &m);
 
         void setData(double number);
         void setData(string inputData);
@@ -65,6 +63,15 @@ class Matrix
         friend Matrix operator*(const Matrix &m, const Matrix &n);
         friend Matrix operator*(double, const Matrix &m);
         friend Matrix operator*(const Matrix &m, double);
+        friend Matrix operator^(const Matrix &m, long);
+        
+    // deklaracje funkcji
+    protected:
+        void allocateArrays();
+        void removeWhiteCharacters(string &str);
+        
+    private:
+        
         
 };
 #endif	/* MATRIX_HPP */

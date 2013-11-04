@@ -25,11 +25,12 @@ using namespace std;
  * Functions:
  *      - Set Data (Specific number, Random, String of data)
  *      - Change sign of Matrix for opposite (example: -A)
- *      - Add (Matrix)
- *      - Subtract (Matrix)
- *      - Multiply (Matrix by Matrix, Matrix by number)
+ *      - Add (a+b, a+=b)
+ *      - Subtract (ex: a-b, a-=b)
+ *      - Multiply (ex: a*b, 3*a, a*2.563)
+ *      - Power (ex: a^6, a^-1, a^0, a^2+6,)
  *      - Transpose ()
- *      - Inverse ()
+ *      - Inverse (ex: a^-1)
  *      - Calculate determinant of the Matrix
  *      - Calculate moda of the Matrix
  */
@@ -107,23 +108,6 @@ Matrix::~Matrix(void)
 /**
  * Functions
  */
-// Private ---------------------------------------------------------------------
-void Matrix::allocateArrays()
-{
-    data = new double *[rows];
-    for(int i=0; i<rows; i++)
-    {
-        data[i] = new double[cols];
-    }
-}
-
-void Matrix::removeWhiteCharacters(string &str)
-{
-    str.erase(remove_if(str.begin(), str.end(), ::isspace), str.end());
-}
-
-
-
 // Public ----------------------------------------------------------------------
 //TODO
 bool Matrix::isNumber(const string &s)
@@ -148,9 +132,32 @@ double Matrix::highestValue()
     return result;
 }
 
-bool isArraysSizeEqual(const Matrix m, const Matrix n)
+/*
+ * Return bool if size of matrices are equal 
+ */
+bool isMatrixSizeEqual(const Matrix &m, const Matrix &n)
 {
     if(m.rows == n.rows && m.cols == n.cols)
+        return true;
+    return false;
+}
+
+/*
+ * Return bool if Columns of matrix 1 equal Rows of matrix 2
+ */
+bool isColsMatrix1EqualRowsMatrix2(const Matrix m, const Matrix n)
+{
+    if (m.cols == n.rows)
+        return true;
+    return false;
+}
+
+/*
+ * Return bool if matrix is square
+ */
+bool isMatrixSquare(const Matrix &m)
+{
+    if (m.rows == m.cols)
         return true;
     return false;
 }
@@ -253,7 +260,7 @@ Matrix &Matrix::operator+=(const Matrix &m)
 {
     // x+=y <=> x=x+y
     Matrix temp(*this); // copy constructor
-    if(isArraysSizeEqual(temp, m) == false)
+    if(isMatrixSizeEqual(temp, m) == false)
         throw "Size of matrices are not equal";
     for(int i=0; i<rows; i++)
     {
@@ -275,7 +282,7 @@ Matrix &Matrix::operator-=(const Matrix &m)
 {
     // x-=y <=> x=x-y
     Matrix temp(*this); 
-    if (isArraysSizeEqual(temp, m) == false)
+    if (isMatrixSizeEqual(temp, m) == false)
         throw "Size of matrices are not equal";
     for(int i=0; i<rows; i++)
     {
@@ -351,15 +358,9 @@ Matrix operator*(const Matrix &m, const Matrix &n)
         throw "Column of matrix one not equal rows of matrix two";
     Matrix result(m.rows, n.cols);
     for (int i=0; i<result.rows; i++)
-    {
         for (int j=0; j<result.cols; j++)
-        {
             for (int k=0; k<m.cols; k++)
-            {
                 result.data[i][j] += m.data[i][k] * n.data[k][j];
-            }
-        }
-    }
     return result;
 }
 
@@ -376,3 +377,56 @@ Matrix operator*(const Matrix &m, double number)
 {
     return m * number;
 }
+
+Matrix operator^(const Matrix &m, long number)
+{
+    if(isMatrixSquare(m) == false)
+        throw "Matrix is not sqaure";
+        
+    Matrix temp(m);
+    if (number<-1)
+    {
+        throw "Can not to raise matrices to the power of negative numbers";
+    }
+    else if (number == -1)
+    {
+        
+    }
+    else if (number == 0)
+    {
+        for (int i=0; i<temp.rows; i++)
+            for (int j=0; j<temp.cols; j++)
+                if(i == j)
+                    temp.data[i][j] = 1;
+                else
+                    temp.data[i][j] = 0;
+        return temp;
+    }
+    else 
+    {
+        for (int q=1; q<number; q++)
+            for (int i=0; i<temp.rows; i++)
+                for (int j=0; j<temp.cols; j++)
+                    temp.data[i][j] = temp.data[i][j] * m.data[i][j];
+        return temp;
+    }
+}
+
+
+// Protected -------------------------------------------------------------------
+void Matrix::allocateArrays()
+{
+    data = new double *[rows];
+    for(int i=0; i<rows; i++)
+    {
+        data[i] = new double[cols];
+    }
+}
+
+void Matrix::removeWhiteCharacters(string &str)
+{
+    str.erase(remove_if(str.begin(), str.end(), ::isspace), str.end());
+}
+
+
+// Private ---------------------------------------------------------------------
