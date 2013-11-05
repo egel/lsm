@@ -20,7 +20,11 @@ int main()
 {
     try
     {
-        Matrix X, Y(2,6);
+        cout << "raz" << endl;
+        Matrix X;
+        cout << "dwa" << endl;
+        Matrix Y(2,6);
+        cout << "trzy" << endl;
 
         cout << "Macierz X" << X << endl;
         
@@ -36,8 +40,8 @@ int main()
         cout << "Macierz Y" << Y << endl;
         
         cout << "Y macierz 3x3" << Y << endl;
-        cout << "Pobranie elemenutu z tablicy Y(0,0) = " << Y(0,0) << endl;
-        cout << "Pobranie elemenutu z tablicy Y(2,2) = " << Y(2,2) << endl;
+        cout << "Pobranie elemenutu z tablicy Y(1,1) = " << Y(1,1) << endl;
+        cout << "Pobranie elemenutu z tablicy Y(3,3) = " << Y(3,3) << endl;
         
         cout << endl << "Dodanie macierzy Y do macierzy X -> X+=Y" << endl;
         X+=Y;

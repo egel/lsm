@@ -23,7 +23,7 @@ using namespace std;
  * Matrix create in default 3x3
  * 
  * Functions:
- *      - Set Data (Specific number, Random, String of data)
+ *      - Set Data (Specific number, Random values, String of data)
  *      - Change sign of Matrix for opposite (example: -A)
  *      - Add (a+b, a+=b)
  *      - Subtract (ex: a-b, a-=b)
@@ -89,12 +89,8 @@ Matrix::Matrix(const Matrix &m)
 {
     allocateArrays();
     for(int i=0; i<rows; i++)
-    {
         for(int j=0; j<cols; j++)
-        {
             data[i][j] = m.data[i][j];
-        }
-    }
 }
 
 Matrix::~Matrix(void)
@@ -122,13 +118,9 @@ double Matrix::highestValue()
 {
     double result = data[0][0];
     for (int i=0; i<rows; i++)
-    {
         for (int j=0; j<cols; j++)
-        {
             if(result <= data[i][j])
                 result = data[i][j];
-        }
-    }
     return result;
 }
 
@@ -176,12 +168,8 @@ bool Matrix::isInteger(const string &s)s
 void Matrix::setData(double number)
 {
     for(int i=0; i<rows; i++)
-    {
         for(int j=0; j<cols; j++)
-        {
             data[i][j] = number;
-        }
-    }
 }
 
 //TODO
@@ -211,35 +199,32 @@ void Matrix::setData(string inputData)
     
     int r=0;
     for(int i=0; i<rows; i++)
-    {
         for(int j=0; j<cols; j++)
         {
             data[i][j] = vect[r];
             r++;
         }
-    }
 }
 
 void Matrix::setDataRandomNumbers()
 {
     srand(time(NULL));
     for(int i=0; i<rows; i++)
-    {
         for(int j=0; j<cols; j++)
-        {
             data[i][j] = (rand()%899 + 100);
-        }
-    }
 }
 
 /*
  * Return value of cell in the Matrix
+ * ex:  for matrix 3x3 options are between 1,1 to 3,3
  */
 double &Matrix::operator()(int row, int col)
 {
-    if(row>this->rows || row<0)
+    
+    row-=1; col-=1;
+    if(row>=this->rows || row<0)
         throw "Can not find the desired row";
-    if(col>this->cols || cols<0)
+    if(col>=this->cols || col<0)
         throw "Can not find the desired column";
     return data[row][col];
 }
@@ -284,12 +269,18 @@ Matrix &Matrix::operator+=(const Matrix &m)
     return *this;
 }
 
+/*
+ * Return new Matrix with changed data
+ */
 Matrix Matrix::operator+(const Matrix &m)
 {
     Matrix temp(*this); // use copy constructor
     return (temp+=m);
 }
 
+/*
+ * Rerutn input Matrix with changed data
+ */
 Matrix &Matrix::operator-=(const Matrix &m)
 {
     // x-=y <=> x=x-y
@@ -297,22 +288,23 @@ Matrix &Matrix::operator-=(const Matrix &m)
     if (isMatrixSizeEqual(temp, m) == false)
         throw "Size of matrices are not equal";
     for(int i=0; i<rows; i++)
-    {
         for(int j=0; j<cols; j++)
-        {
             data[i][j] -= m.data[i][j];
-        }
-    }
     return *this;
 }
 
+/*
+ * Return new Matrix with changed data
+ */
 Matrix Matrix::operator-(const Matrix &m)
 {
     Matrix temp(*this);
     return (temp-=m);
 }
 
-
+/*
+ * Return new transposed Matrix
+ */
 Matrix Matrix::transpose()
 {
     Matrix temp(this->cols, this->rows);
@@ -322,14 +314,17 @@ Matrix Matrix::transpose()
     return temp;
 }
 
+// TODO
 double Matrix::determinant(double)
-{    
+{   
+    if (isMatrixSquare(*this) == false)
+        throw "Matrix is not sqaure";
     return 0;
 }
 
 void Matrix::printSize()
 {
-    cout << rows << " x " << cols;
+    cout << rows << "x" << cols;
 }
 
 void Matrix::print()
@@ -420,7 +415,7 @@ Matrix operator^(const Matrix &m, long number)
     }
     else 
     {
-        for (int q=1; q<number; q++)
+        for (int q=1; q<=number; q++)
             for (int i=0; i<temp.rows; i++)
                 for (int j=0; j<temp.cols; j++)
                     temp.data[i][j] = temp.data[i][j] * m.data[i][j];
