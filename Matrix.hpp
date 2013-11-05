@@ -43,6 +43,7 @@ class Matrix
         void setData(string inputData);
         void setDataRandomNumbers();
         
+        double &operator()(int row, int col);
         Matrix &operator=(const Matrix &m);
         Matrix &operator+=(const Matrix &m);
         Matrix operator+(const Matrix &m);

@@ -232,6 +232,18 @@ void Matrix::setDataRandomNumbers()
     }
 }
 
+/*
+ * Return value of cell in the Matrix
+ */
+double &Matrix::operator()(int row, int col)
+{
+    if(row>this->rows || row<0)
+        throw "Can not find the desired row";
+    if(col>this->cols || cols<0)
+        throw "Can not find the desired column";
+    return data[row][col];
+}
+
 Matrix &Matrix::operator=(const Matrix &m)
 {
     // avoid self assignment
@@ -311,7 +323,7 @@ Matrix Matrix::transpose()
 }
 
 double Matrix::determinant(double)
-{
+{    
     return 0;
 }
 
@@ -390,7 +402,7 @@ Matrix operator^(const Matrix &m, long number)
     Matrix temp(m);
     if (number<-1)
     {
-        throw "Can not to raise matrices to the power of negative numbers";
+        throw "Can not to raise matrices to the power of negative numbers, excpet -1";
     }
     else if (number == -1)
     {
