@@ -52,7 +52,7 @@ class Matrix
         
         Matrix transpose();
         //TODO
-        double determinant(double);     
+        double determinant();     
         
         void printSize();
         void print();

@@ -172,7 +172,11 @@ void Matrix::setData(double number)
             data[i][j] = number;
 }
 
-//TODO
+/*
+ * TODO
+ * To fix:
+ *      - double numbers are not recognise
+ */
 void Matrix::setData(string inputData)
 {
     // a11, a12, a13; a21, a22, a23; a31, a32, a33;
@@ -220,7 +224,6 @@ void Matrix::setDataRandomNumbers()
  */
 double &Matrix::operator()(int row, int col)
 {
-    
     row-=1; col-=1;
     if(row>=this->rows || row<0)
         throw "Can not find the desired row";
@@ -243,12 +246,8 @@ Matrix &Matrix::operator=(const Matrix &m)
         cols = m.cols;
         allocateArrays();
         for (int i=0; i<rows; i++)
-        {
             for (int j=0; j<cols; j++)
-            {
                 data[i][j] = m.data[i][j];
-            }
-        }
         return *this;
     }
 }
@@ -260,12 +259,8 @@ Matrix &Matrix::operator+=(const Matrix &m)
     if(isMatrixSizeEqual(temp, m) == false)
         throw "Size of matrices are not equal";
     for(int i=0; i<rows; i++)
-    {
         for(int j=0; j<cols; j++)
-        {
             data[i][j] += m.data[i][j];
-        }
-    }
     return *this;
 }
 
@@ -294,7 +289,7 @@ Matrix &Matrix::operator-=(const Matrix &m)
 }
 
 /*
- * Return new Matrix with changed data
+ * Return new Matrix 
  */
 Matrix Matrix::operator-(const Matrix &m)
 {
@@ -315,13 +310,38 @@ Matrix Matrix::transpose()
 }
 
 // TODO
-double Matrix::determinant(double)
+double Matrix::determinant()
 {   
     if (isMatrixSquare(*this) == false)
-        throw "Matrix is not sqaure";
-    return 0;
+        throw "Matrix is not sqaure. Cannot calculate determianant of not square Matrix.";
+    // For Matrix 1x1
+    if (this->cols == 1) 
+    {
+        return this->data[0][0];
+    }
+    else if (this->cols == 2)
+    {
+        // not loop 'cause this is the fastest method
+        return data[0][0]*data[1][1] - data[0][1]*data[1][0];
+    }
+    else if (this->cols == 3)
+    {
+        // not loop 'cause this is faster method
+        return (data[0][0]*data[1][1]*data[2][2] 
+                + data[0][1]*data[1][2]*data[2][0]
+                + data[0][2]*data[1][0]*data[2][2]) 
+                -(data[0][2]*data[1][1]*data[2][0] 
+                + data[0][1]*data[1][0]*data[2][2]
+                + data[0][0]*data[1][2]*data[2][1]);
+    }
+    else {
+        return 0;
+    }
 }
 
+/*
+ * Print size of the Matrix on screen
+ */
 void Matrix::printSize()
 {
     cout << rows << "x" << cols;
@@ -350,6 +370,9 @@ void Matrix::print()
     }
 }
 
+/*
+ * Return output stream (print) with Matrix
+ */
 ostream &operator<<(ostream &out, const Matrix &m)
 {   
     out << endl;
@@ -363,6 +386,9 @@ ostream &operator<<(ostream &out, const Matrix &m)
     return out;
 }
 
+/*
+ * Return new Matrix
+ */
 Matrix operator*(const Matrix &m, const Matrix &n)
 {
     if(m.cols != n.rows)
@@ -375,7 +401,10 @@ Matrix operator*(const Matrix &m, const Matrix &n)
     return result;
 }
 
-Matrix operator*(double number, const Matrix &m)
+/*
+ * Return new Matrix; Number muptiply by Matrix
+ */
+Matrix operator*(const Matrix &m, double number)
 {
     Matrix temp(m.rows, m.cols);
     for (int i=0; i<temp.rows; i++)
@@ -384,11 +413,17 @@ Matrix operator*(double number, const Matrix &m)
     return temp;
 }
 
-Matrix operator*(const Matrix &m, double number)
+/*
+ * Return new Matrix muptiply by number
+ */
+Matrix operator*(double number, const Matrix &m)
 {
     return m * number;
 }
 
+/*
+ * Return new Matrix raised to the Power
+ */
 Matrix operator^(const Matrix &m, long number)
 {
     if(isMatrixSquare(m) == false)
@@ -429,9 +464,7 @@ void Matrix::allocateArrays()
 {
     data = new double *[rows];
     for(int i=0; i<rows; i++)
-    {
         data[i] = new double[cols];
-    }
 }
 
 void Matrix::removeWhiteCharacters(string &str)

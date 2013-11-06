@@ -82,10 +82,34 @@ int main()
         
         cout << "Transponowanie macierzy b" << endl;
         b = b.transpose();
-        cout << b <<endl;
+        cout << b;
+        
+        cout << endl << "Wyznacznik macierzy f" << endl;
+        Matrix f(1,1);
+        f.setData("68");
+        cout << "Macierz f" << f;
+        cout << "Wyznacznik macierzy = " << f.determinant() << endl;
+        
+        cout << endl << "Wyznacznik macierzy g" << endl;
+        Matrix g(2,2);
+        g.setData("3,2,4,-2");
+        cout << "Macierz g" << g;
+        cout << "Wyznacznik macierzy = " << g.determinant() << endl;
+        
+        cout << endl << "Wyznacznik macierzy h" << endl;
+        Matrix h(2,2);
+        h.setData("-1000,+2000,-234,-23");
+        cout << "Macierz h" << h;
+        cout << "Wyznacznik macierzy = " << h.determinant() << endl;
+        
+        cout << endl << "Wyznacznik macierzy i" << endl;
+        Matrix i(3,3);
+        i.setData("2,2,0,9,4,2,2,4,5");
+        cout << "Macierz i" << i;
+        cout << "Wyznacznik macierzy = " << i.determinant() << endl;
         
     }
-    catch (const char* msg) 
+    catch (const char *msg)
     {
         cerr << msg << endl;
     }
