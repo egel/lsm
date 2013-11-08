@@ -310,50 +310,6 @@ Matrix Matrix::transpose()
     return temp;
 }
 
-// TODO
-/*
- * 
- */
-double Matrix::determinant()
-{   
-    if (isMatrixSquare(*this) == false)
-        throw "Matrix is not sqaure. Cannot calculate determianant of not square Matrix.";
-    // For Matrix 1x1
-    if (this->cols == 1)
-    {
-        return this->data[0][0];
-    }
-    else if (this->cols == 2)
-    {
-        // not loop 'cause this is the fastest method
-        return data[0][0]*data[1][1] - data[0][1]*data[1][0];
-    }
-    else if (this->cols == 3)
-    {
-        // Sarrus Method
-        // not loop 'cause this is much faster method
-        return (data[0][0]*data[1][1]*data[2][2]
-                + data[0][1]*data[1][2]*data[2][0]
-                + data[0][2]*data[1][0]*data[2][1])
-                -(data[0][2]*data[1][1]*data[2][0]
-                + data[0][1]*data[1][0]*data[2][2]
-                + data[0][0]*data[1][2]*data[2][1]);
-    }
-    else {
-        
-        double result=0;
-        Matrix temp(rows-1,cols-1);         // tworzymy tymczasową Macierz dla podwyznacznika
-        
-        for(int i=0; i<rows; i++)
-            for(int j=0; j<cols; j++)
-                // usunięce wiersza i
-                // usunięcie columny j
-                // TODO zamienić pow() na szybsze rozwiązanie ;)
-                result += data[i][j] * pow(-1, i+j) * temp.determinant() ;
-        return result;                                   // ustalamy wartość funkcji
-    }
-}
-
 /*
  * Print size of the Matrix on screen
  */
@@ -473,23 +429,85 @@ Matrix operator^(const Matrix &m, long number)
     }
 }
 
+// TODO
+/*
+ * Return determinant of Matrix
+ */
+double determinant(const Matrix &m)
+{   
+    if (isMatrixSquare(m) == false)
+        throw "Matrix is not sqaure. Cannot calculate determianant of not square Matrix.";
+    // For Matrix 1x1
+    if (m.cols == 1 && m.rows == 1)
+    {
+        return m.data[0][0];
+    }
+    else if (m.cols == 2 && m.rows == 2)
+    {
+        // not loop 'cause this is the fastest method
+        return m.data[0][0]*m.data[1][1] - m.data[0][1]*m.data[1][0];
+    }
+    else if (m.cols == 3 && m.rows == 3)
+    {
+        // Sarrus Method
+        // not loop 'cause this is much faster method
+        return (m.data[0][0]*m.data[1][1]*m.data[2][2]
+                + m.data[0][1]*m.data[1][2]*m.data[2][0]
+                + m.data[0][2]*m.data[1][0]*m.data[2][1])
+                -(m.data[0][2]*m.data[1][1]*m.data[2][0]
+                + m.data[0][1]*m.data[1][0]*m.data[2][2]
+                + m.data[0][0]*m.data[1][2]*m.data[2][1]);
+    }
+    else {
+        double sum=0;
+        Matrix temp(m); // tworzymy tymczasową Macierz dla podwyznacznika
+        for(int i=0; i<m.rows; i++)
+        {
+            for(int j=0; j<m.cols; j++)
+            {
+                temp = removeRow(temp, i+1); // ponieważ wiersz > 1
+                temp = removeColumn(temp, j+1); // ponieważ kolumna > 1
+                // TODO zamienić pow() na szybsze rozwiązanie ;)
+                sum += m.data[i][j] * pow(-1, i+j) * determinant(temp);
+            }
+        }
+        return sum;
+    }
+}
+
+/*
+ * Return number of rows
+ */
+int getNumberOfRows(const Matrix &m)
+{
+    return m.rows;
+}
+
+/*
+ * Return number of columns
+ */
+int getNumberOfColumns(const Matrix &m)
+{
+    return m.cols;
+}
+
 /*
  * Return new Matrix with removed row
  * ex: for 3x3 long number are between 1-3
  */
-Matrix removeRow(const Matrix &m, long number)
+Matrix removeRow(const Matrix &m, long numberOfRow)
 {
-    if(m.rows == 1)
-        throw "Cannot remove row from Matrix that it have only one";
+    if(m.rows < 2)
+        throw "Cannot remove row from Matrix that it has only one";
     Matrix temp(m.rows-1, m.cols);
     for (int i=0; i<m.rows; i++)
         for (int j=0; j<m.cols; j++)
         {
-            if(i < number-1)
+            if(i < numberOfRow-1)
             {
                 temp.data[i][j] = m.data[i][j];
             }
-            if(i > number-1)
+            if(i > numberOfRow-1)
             {
                 temp.data[i-1][j] = m.data[i][j];
             }
@@ -501,19 +519,19 @@ Matrix removeRow(const Matrix &m, long number)
  * Return new Matrix with removed column
  * ex: for 3x3 long number are between 1-3
  */
-Matrix removeColumn(const Matrix &m, long number)
+Matrix removeColumn(const Matrix &m, long numberOfColumn)
 {
-    if(m.cols == 1)
-        throw "Cannot remove column from Matrix that it have only one";
+    if(m.cols < 2)
+        throw "Cannot remove column from Matrix that it has only one";
     Matrix temp(m.rows, m.cols-1);
     for (int j=0; j<m.cols; j++)
         for (int i=0; i<m.rows; i++)
         {
-            if(j < number-1)
+            if(j < numberOfColumn-1)
             {
                 temp.data[i][j] = m.data[i][j];
             }
-            if(j > number-1)
+            if(j > numberOfColumn-1)
             {
                 temp.data[i][j-1] = m.data[i][j];
             }

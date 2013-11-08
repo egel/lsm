@@ -49,11 +49,7 @@ class Matrix
         Matrix operator+(const Matrix &m);
         Matrix &operator-=(const Matrix &m);
         Matrix operator-(const Matrix &m);
-        
         Matrix transpose();
-        //TODO
-        double determinant();     
-        
         void printSize();
         void print();
         
@@ -65,6 +61,10 @@ class Matrix
         friend Matrix operator*(const Matrix &m, double);
         friend Matrix operator^(const Matrix &m, long);
         
+        
+        friend double determinant(const Matrix &m);
+        friend int getNumberOfRows(const Matrix &m);
+        friend int getNumberOfColumns(const Matrix &m);
         friend Matrix removeRow(const Matrix &m, long number);
         friend Matrix removeColumn(const Matrix &m, long number);
         
