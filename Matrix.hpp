@@ -65,6 +65,7 @@ class Matrix
         friend Matrix operator*(const Matrix &m, double);
         friend Matrix operator^(const Matrix &m, long);
         
+        friend Matrix removeRow(const Matrix &m, long number);
         friend Matrix removeColumn(const Matrix &m, long number);
         
     // deklaracje funkcji

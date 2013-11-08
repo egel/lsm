@@ -473,22 +473,28 @@ Matrix operator^(const Matrix &m, long number)
     }
 }
 
-
-// Protected -------------------------------------------------------------------
-void Matrix::allocateArrays()
+/*
+ * Return new Matrix with removed row
+ * ex: for 3x3 long number are between 1-3
+ */
+Matrix removeRow(const Matrix &m, long number)
 {
-    if(rows<1)
-        throw "Matrix rows must be equal or greater then 1";
-    if(cols<1)
-        throw "Matrix columns must be equal or greater then 1";
-    data = new double *[rows];
-    for(int i=0; i<rows; i++)
-        data[i] = new double[cols];
-}
-
-void Matrix::removeWhiteCharacters(string &str)
-{
-    str.erase(remove_if(str.begin(), str.end(), ::isspace), str.end());
+    if(m.rows == 1)
+        throw "Cannot remove row from Matrix that it have only one";
+    Matrix temp(m.rows-1, m.cols);
+    for (int i=0; i<m.rows; i++)
+        for (int j=0; j<m.cols; j++)
+        {
+            if(i < number-1)
+            {
+                temp.data[i][j] = m.data[i][j];
+            }
+            if(i > number-1)
+            {
+                temp.data[i-1][j] = m.data[i][j];
+            }
+        }
+    return temp;
 }
 
 /*
@@ -513,6 +519,24 @@ Matrix removeColumn(const Matrix &m, long number)
             }
         }
     return temp;
+}
+
+
+// Protected -------------------------------------------------------------------
+void Matrix::allocateArrays()
+{
+    if(rows<1)
+        throw "Matrix rows must be equal or greater then 1";
+    if(cols<1)
+        throw "Matrix columns must be equal or greater then 1";
+    data = new double *[rows];
+    for(int i=0; i<rows; i++)
+        data[i] = new double[cols];
+}
+
+void Matrix::removeWhiteCharacters(string &str)
+{
+    str.erase(remove_if(str.begin(), str.end(), ::isspace), str.end());
 }
 
 // Private ---------------------------------------------------------------------

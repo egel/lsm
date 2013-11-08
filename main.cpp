@@ -111,6 +111,10 @@ int main()
         k = removeColumn(k,4);
         cout << k << endl;
         
+        cout << endl << "Usuwanie 3 wiersza z macierzy k" << endl;
+        cout << "Macierz k" << k;
+        k = removeRow(k,4);
+        cout << k << endl;
         
     }
     catch (const char *msg)
