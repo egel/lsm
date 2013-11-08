@@ -104,7 +104,7 @@ int main()
         
         cout << endl << "Wyznacznik macierzy i" << endl;
         Matrix i(3,3);
-        i.setData("2,2,0,9,4,2,2,4,5");
+        i.setData("1,2,3,6,5,4,3,7,2");
         cout << "Macierz i" << i;
         cout << "Wyznacznik macierzy = " << i.determinant() << endl;
         
