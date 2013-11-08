@@ -315,7 +315,7 @@ double Matrix::determinant()
     if (isMatrixSquare(*this) == false)
         throw "Matrix is not sqaure. Cannot calculate determianant of not square Matrix.";
     // For Matrix 1x1
-    if (this->cols == 1) 
+    if (this->cols == 1)
     {
         return this->data[0][0];
     }
@@ -437,7 +437,7 @@ Matrix operator^(const Matrix &m, long number)
     }
     else if (number == -1)
     {
-        
+        // Jeśli det(A) = 0 to macierz jest nieodwracalna
     }
     else if (number == 0)
     {
@@ -463,6 +463,10 @@ Matrix operator^(const Matrix &m, long number)
 // Protected -------------------------------------------------------------------
 void Matrix::allocateArrays()
 {
+    if(rows<1)
+        throw "Matrix rows must be equal or greater then 1";
+    if(cols<1)
+        throw "Matrix columns must be equal or greater then 1";
     data = new double *[rows];
     for(int i=0; i<rows; i++)
         data[i] = new double[cols];

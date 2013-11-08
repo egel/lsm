@@ -20,11 +20,7 @@ int main()
 {
     try
     {
-        cout << "raz" << endl;
-        Matrix X;
-        cout << "dwa" << endl;
-        Matrix Y(2,6);
-        cout << "trzy" << endl;
+        Matrix X, Y(2,6);
 
         cout << "Macierz X" << X << endl;
         
