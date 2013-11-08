@@ -60,11 +60,12 @@ class Matrix
         // Friend functions
         friend ostream &operator<<
             (ostream &out, const Matrix &m);
-        //TODO
         friend Matrix operator*(const Matrix &m, const Matrix &n);
         friend Matrix operator*(double, const Matrix &m);
         friend Matrix operator*(const Matrix &m, double);
         friend Matrix operator^(const Matrix &m, long);
+        
+        friend Matrix removeColumn(const Matrix &m, long number);
         
     // deklaracje funkcji
     protected:

@@ -11,6 +11,7 @@
 #include <string>
 #include <sstream>
 #include <ctime>
+#include <cmath>
 #include <boost/regex.hpp>
 
 #include "Matrix.hpp"
@@ -310,6 +311,9 @@ Matrix Matrix::transpose()
 }
 
 // TODO
+/*
+ * 
+ */
 double Matrix::determinant()
 {   
     if (isMatrixSquare(*this) == false)
@@ -327,7 +331,7 @@ double Matrix::determinant()
     else if (this->cols == 3)
     {
         // Sarrus Method
-        // not loop 'cause this is faster method
+        // not loop 'cause this is much faster method
         return (data[0][0]*data[1][1]*data[2][2]
                 + data[0][1]*data[1][2]*data[2][0]
                 + data[0][2]*data[1][0]*data[2][1])
@@ -336,7 +340,17 @@ double Matrix::determinant()
                 + data[0][0]*data[1][2]*data[2][1]);
     }
     else {
-        return 0;
+        
+        double result=0;
+        Matrix temp(rows-1,cols-1);         // tworzymy tymczasową Macierz dla podwyznacznika
+        
+        for(int i=0; i<rows; i++)
+            for(int j=0; j<cols; j++)
+                // usunięce wiersza i
+                // usunięcie columny j
+                // TODO zamienić pow() na szybsze rozwiązanie ;)
+                result += data[i][j] * pow(-1, i+j) * temp.determinant() ;
+        return result;                                   // ustalamy wartość funkcji
     }
 }
 
@@ -477,5 +491,28 @@ void Matrix::removeWhiteCharacters(string &str)
     str.erase(remove_if(str.begin(), str.end(), ::isspace), str.end());
 }
 
+/*
+ * Return new Matrix with removed column
+ * ex: for 3x3 long number are between 1-3
+ */
+Matrix removeColumn(const Matrix &m, long number)
+{
+    if(m.cols == 1)
+        throw "Cannot remove column from Matrix that it have only one";
+    Matrix temp(m.rows, m.cols-1);
+    for (int j=0; j<m.cols; j++)
+        for (int i=0; i<m.rows; i++)
+        {
+            if(j < number-1)
+            {
+                temp.data[i][j] = m.data[i][j];
+            }
+            if(j > number-1)
+            {
+                temp.data[i][j-1] = m.data[i][j];
+            }
+        }
+    return temp;
+}
 
 // Private ---------------------------------------------------------------------

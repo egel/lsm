@@ -104,6 +104,14 @@ int main()
         cout << "Macierz i" << i;
         cout << "Wyznacznik macierzy = " << i.determinant() << endl;
         
+        cout << endl << "Usuwanie 3 kolumny z macierzy k" << endl;
+        Matrix k(4,4);
+        k.setData("1,2,3,6,5,4,3,7,2,1,2,3,4,4,0,0");
+        cout << "Macierz k" << k;
+        k = removeColumn(k,4);
+        cout << k << endl;
+        
+        
     }
     catch (const char *msg)
     {
