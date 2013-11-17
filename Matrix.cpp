@@ -459,6 +459,9 @@ double determinant(const Matrix &m)
                 + m.data[0][0]*m.data[1][2]*m.data[2][1]);
     }
     else {
+        
+        throw "Brak napisanej funkcji dla liczenia wyznacznika dla macierzy wiekszej niż 3x3";
+        
         double sum=0;
         Matrix temp(m); // tworzymy tymczasową Macierz dla podwyznacznika
         for(int i=0; i<m.rows; i++)
@@ -479,7 +482,7 @@ double determinant(const Matrix &m)
  * Return number of rows
  */
 int getNumberOfRows(const Matrix &m)
-{
+{    
     return m.rows;
 }
 
