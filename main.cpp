@@ -192,13 +192,18 @@ int main()
         cout << "Macierz i" << i;
         cout << "Wyznacznik macierzy = " << determinant(i) << endl;
         
-        /*
         cout << endl << "Wyznacznik macierzy p" << endl;
         Matrix p(4,4);
-        p.setData("1,2,3,6,5,4,3,7,2,1,2,3,4,4,0,0");
+        p.setData("1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2");
         cout << "Macierz p" << p;
-        cout << determinant(p) << endl;
-        */
+        cout << "Wyznacznik macierzy = " << determinant(p) << endl;
+        
+        cout << endl << "Wyznacznik macierzy qq" << endl;
+        Matrix qq(7,7);
+        qq.setData("1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2,1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2,1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2,1");
+        cout << "Macierz p" << qq;
+        cout << "Wyznacznik macierzy = " << determinant(qq) << endl;
+        
         
         cout << endl << "--------------------------------------------------------" << endl;
         cout << endl << "\t\tOdwracanie macierzy R" << endl;

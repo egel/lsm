@@ -459,22 +459,22 @@ double determinant(const Matrix &m)
                 + m.data[0][0]*m.data[1][2]*m.data[2][1]);
     }
     else {
-        
-        throw "Brak napisanej funkcji dla liczenia wyznacznika dla macierzy wiekszej niż 3x3";
-        
-        double sum=0;
-        Matrix temp(m); // tworzymy tymczasową Macierz dla podwyznacznika
-        for(int i=0; i<m.rows; i++)
+        /*
+         * Rozwinięcie Laplace'a
+         * http://www.math.edu.pl/rozwiniecie-laplacea
+         */
+        float result=0; 
+        for(int j=0; j<m.cols; j++)
         {
-            for(int j=0; j<m.cols; j++)
-            {
-                temp = removeRow(temp, i+1); // ponieważ wiersz > 1
-                temp = removeColumn(temp, j+1); // ponieważ kolumna > 1
-                // TODO zamienić pow() na szybsze rozwiązanie ;)
-                sum += m.data[i][j] * pow(-1, i+j) * determinant(temp);
-            }
+            // z założenia bierzemy zawsze 1 wiesz by było łatwiej analizować
+            float temp = m.data[0][j];
+            if( (1+(j+1))%2 == 1 )
+                temp *= -1;
+            Matrix tempMatrix = removeRow(m,1); // na stałe 1
+            tempMatrix = removeColumn(tempMatrix,j+1);
+            result += temp * determinant(tempMatrix);
         }
-        return sum;
+        return result;
     }
 }
 
