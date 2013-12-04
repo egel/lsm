@@ -30,7 +30,8 @@ class Matrix
 
     public:
         // TODO
-        bool isNumber(const string &str);
+        friend bool isEvenNumber(const int &number);
+        friend bool isNegativeNumber(const float &number);
         // TODO bool isInteger(const string &str);
         // TODO bool isFloat(const string &str);
         double highestValue();

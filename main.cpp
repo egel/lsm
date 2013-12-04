@@ -20,6 +20,11 @@ int main()
 {
     try
     {
+        cout << "********************************************************" << endl;
+        cout << "****************   Start of tests   ********************" << endl;
+        cout << "********************************************************" << endl;
+        
+        
         cout << endl << "--------------------------------------------------------" << endl;
         cout << endl << "\tTworzenie różnych rodzajów macierzy" << endl;
         cout << endl << "--------------------------------------------------------" << endl;
@@ -209,13 +214,21 @@ int main()
         cout << endl << "\t\tOdwracanie macierzy R" << endl;
         cout << endl << "--------------------------------------------------------" << endl;
         
-        Matrix R(4,4);
-        R.setData("1, 2,4, 6, 4, 3, 6, 8, 3, 7,3, 4, -2, 6, -2, 9");
+        Matrix R(3,3), R1;
+        R.setData("1,1,3,3,1,3,2,2,2");
         cout << "Macierz R" << R << endl;
         cout << "... moment odwracania macierzy..." << endl;
-        R^-1;
         cout << "Macierz odwrotna do macierzy R" << endl;
+        R1 = R^-1;
+        cout << R1 << endl;
+        cout << "Sprawdzenie R*R^-1" << endl;
+        R = R*R1;
         cout << R;
+        
+        
+        cout << endl << "********************************************************";
+        cout << endl << "******************   End of tests   ********************";
+        cout << endl << "********************************************************" << endl;
     }
     catch (const char *msg)
     {

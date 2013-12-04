@@ -106,11 +106,37 @@ Matrix::~Matrix(void)
  * Functions
  */
 // Public ----------------------------------------------------------------------
-//TODO
-bool Matrix::isNumber(const string &s)
+
+/*
+ * Retrun true is number is even else false
+ * ex: 2, 6, 124, 10000000 = true
+ */
+bool isEvenNumber(const int &number)
 {
-    return true;
+    if(number % 2 == 1)
+        return true;
+    else
+        return false;
 }
+
+/*
+ * Retrun true if number is below zero (negative) else false
+ */
+bool isNegativeNumber(const float &number)
+{
+    if(number<0)
+        return true;
+    else
+        return false;
+}
+
+//bool isNegativeNumber(const int &number)
+//{
+//    if(number<0)
+//        return true;
+//    else
+//        return false;
+//}
 
 /*
  * Return value of the last element with the highest value
@@ -407,10 +433,35 @@ Matrix operator^(const Matrix &m, long number)
     }
     else if (number == -1)
     {
+        /*
+         * Odwracanie macierzy 
+         * z wykorzystaniem macierzy dopełnień algebraicznych
+         */
         // Jeśli det(A) = 0 to macierz jest nieodwracalna
+        if(determinant(temp) == 0)
+            throw "Can not invert the matrix with determiant = 0 (Ma)";
+        
+        // jeśli det(A) jest różne od 0 to jest to macierz nieosobliwa (non-singular matrix)
+        float detTemp = determinant(temp);
+        Matrix D(temp.rows, temp.cols); // macierz dopełnień algebraicznych
+        
+        for(int i=0; i<temp.rows; i++)
+        {
+            for(int j=0; j<temp.cols; j++)
+            {
+                Matrix tempMatrix = removeRow(temp,i+1);
+                tempMatrix = removeColumn(tempMatrix,j+1);
+                D.data[i][j] = determinant(tempMatrix);
+            }
+        }
+        D = (1/detTemp)*D;
+        return D;
     }
     else if (number == 0)
     {
+        /*
+         * Macierz jednostkowa
+         */
         for (int i=0; i<temp.rows; i++)
             for (int j=0; j<temp.cols; j++)
                 if(i == j)
@@ -468,7 +519,7 @@ double determinant(const Matrix &m)
         {
             // z założenia bierzemy zawsze 1 wiesz by było łatwiej analizować
             float temp = m.data[0][j];
-            if( (1+(j+1))%2 == 1 )
+            if( !isEvenNumber(1+(j+1)) )
                 temp *= -1;
             Matrix tempMatrix = removeRow(m,1); // na stałe 1
             tempMatrix = removeColumn(tempMatrix,j+1);
