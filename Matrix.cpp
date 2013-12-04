@@ -113,7 +113,7 @@ Matrix::~Matrix(void)
  */
 bool isEvenNumber(const int &number)
 {
-    if(number % 2 == 1)
+    if(number % 2 == 0)
         return true;
     else
         return false;
@@ -129,14 +129,6 @@ bool isNegativeNumber(const float &number)
     else
         return false;
 }
-
-//bool isNegativeNumber(const int &number)
-//{
-//    if(number<0)
-//        return true;
-//    else
-//        return false;
-//}
 
 /*
  * Return value of the last element with the highest value
@@ -444,18 +436,22 @@ Matrix operator^(const Matrix &m, long number)
         // jeśli det(A) jest różne od 0 to jest to macierz nieosobliwa (non-singular matrix)
         float detTemp = determinant(temp);
         Matrix D(temp.rows, temp.cols); // macierz dopełnień algebraicznych
+        Matrix tempMatrix;
         
         for(int i=0; i<temp.rows; i++)
         {
             for(int j=0; j<temp.cols; j++)
             {
-                Matrix tempMatrix = removeRow(temp,i+1);
+                tempMatrix = removeRow(temp,i+1);
                 tempMatrix = removeColumn(tempMatrix,j+1);
                 D.data[i][j] = determinant(tempMatrix);
+                if( !isEvenNumber((i+1)+(j+1)) )
+                {
+                    D.data[i][j] *= -1;
+                }
             }
         }
-        D = (1/detTemp)*D;
-        return D;
+        return (1/detTemp)*(D.transpose());
     }
     else if (number == 0)
     {
@@ -496,7 +492,7 @@ double determinant(const Matrix &m)
     else if (m.cols == 2 && m.rows == 2)
     {
         // not loop 'cause this is the fastest method
-        return m.data[0][0]*m.data[1][1] - m.data[0][1]*m.data[1][0];
+        return ((m.data[0][0]*m.data[1][1]) - (m.data[0][1]*m.data[1][0]));
     }
     else if (m.cols == 3 && m.rows == 3)
     {

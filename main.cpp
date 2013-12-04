@@ -185,6 +185,12 @@ int main()
         cout << "Macierz g" << g;
         cout << "Wyznacznik macierzy = " << determinant(g) << endl;
         
+        cout << endl << "Wyznacznik macierzy g1" << endl;
+        Matrix g1(2,2);
+        g1.setData("0,1,1,-1");
+        cout << "Macierz g1" << g1;
+        cout << "Wyznacznik macierzy = " << determinant(g1) << endl;
+        
         cout << endl << "Wyznacznik macierzy h" << endl;
         Matrix h(2,2);
         h.setData("-1000,+2000,-234,-23");
@@ -216,15 +222,45 @@ int main()
         
         Matrix R(3,3), R1;
         R.setData("1,1,3,3,1,3,2,2,2");
-        cout << "Macierz R" << R << endl;
-        cout << "... moment odwracania macierzy..." << endl;
-        cout << "Macierz odwrotna do macierzy R" << endl;
+        //R.setData("1,2,1,1,0,1,2,1,-1");
+        cout << "Macierz R" << R;
+        cout << "Wyznacznik macierzy R: " << determinant(R) << endl;
+        
+        cout << endl << "Macierz odwrotna do macierzy R";
         R1 = R^-1;
         cout << R1 << endl;
-        cout << "Sprawdzenie R*R^-1" << endl;
+        cout << "Sprawdzenie R*R^-1";
         R = R*R1;
         cout << R;
         
+        
+        Matrix S(7,7), S1;
+        S.setData("1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2,1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2,1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2,1");
+        cout << endl << endl << "Macierz S" << R;
+        cout << "Wyznacznik macierzy S: " << determinant(S) << endl;
+        
+        cout << endl << "Macierz odwrotna do macierzy S";
+        S1 = S^-1;
+        cout << S1 << endl;
+        cout << "Sprawdzenie S*S^-1";
+        S = S*S1;
+        cout << S;
+        
+        cout << endl << "--------------------------------------------------------" << endl;
+        cout << endl << "\t\tFunkcje dodatkowe - helpery" << endl;
+        cout << endl << "--------------------------------------------------------" << endl;
+        
+        cout << "-1%2 = " << -1%2 << endl;
+        cout << "0%2 = " << 0%2 << endl;
+        cout << "1%2 = " << 1%2 << endl;
+        cout << "2%2 = " << 2%2 << endl;
+        cout << "3%2 = " << 3%2 << endl;
+        cout << "4%2 = " << 4%2 << endl;
+        cout << "------" << endl;
+        cout << "0 = " << 0 << endl;
+        cout << "-0 = " << -0 << endl;
+        cout << "-(0) = " << -(0) << endl;
+        cout << "(-0) = " << (-0) << endl;
         
         cout << endl << "********************************************************";
         cout << endl << "******************   End of tests   ********************";
