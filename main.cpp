@@ -236,7 +236,7 @@ int main()
         
         Matrix S(7,7), S1;
         S.setData("1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2,1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2,1,3,-4,2,3,0,2,-1,2,1,0,3,0,0,5,2,1");
-        cout << endl << endl << "Macierz S" << R;
+        cout << endl << endl << "Macierz S" << S;
         cout << "Wyznacznik macierzy S: " << determinant(S) << endl;
         
         cout << endl << "Macierz odwrotna do macierzy S";
