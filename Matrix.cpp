@@ -431,7 +431,7 @@ Matrix operator^(const Matrix &m, long number)
          */
         // Jeśli det(A) = 0 to macierz jest nieodwracalna
         if(determinant(temp) == 0)
-            throw "Can not invert the matrix with determiant = 0 (Ma)";
+            throw "Can not invert the matrix with determiant = 0";
         
         // jeśli det(A) jest różne od 0 to jest to macierz nieosobliwa (non-singular matrix)
         float detTemp = determinant(temp);

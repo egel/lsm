@@ -57,9 +57,9 @@ int main()
         cout << endl << "\t\tPrzypisywanie (kopiowanie) macierzy" << endl;
         cout << endl << "------------------------------------------------------------" << endl;
         
-        cout << "Przypisanie macierzy y = x" << endl;
+        cout << "Przypisanie macierzy Y = X" << endl;
         cout << "Macierz X" << X;
-        cout << "...przypisanie y = x..." << endl;
+        cout << "...przypisanie Y = X..." << endl;
         Y = X;
         cout << "Macierz Y" << Y << endl;
         
@@ -261,6 +261,24 @@ int main()
         cout << "-0 = " << -0 << endl;
         cout << "-(0) = " << -(0) << endl;
         cout << "(-0) = " << (-0) << endl;
+        
+        
+        cout << endl << "--------------------------------------------------------" << endl;
+        cout << endl << "\t\tMetoda Najmniejszych Kwadratów" << endl;
+        cout << endl << "--------------------------------------------------------" << endl;
+        
+        Matrix X1(9,2), Y1(9,1), Result;
+        X1.setData("2,1,3,1,4,1,6,1,8,1,9,1,11,1,12,1,13,1");
+        Y1.setData("12,11,15,17,16,19,21,20,19");
+        
+        cout << "Macierz X1" << X1 << endl;
+        cout << "Macierz Y1" << Y1 << endl;
+        
+        Result = X1.transpose() * X1;
+        Result = Result^-1;
+        Result = Result * (X1.transpose() * Y1);
+        
+        cout << "Wynik" << Result << endl;
         
         cout << endl << "********************************************************";
         cout << endl << "******************   End of tests   ********************";
