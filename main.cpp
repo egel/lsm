@@ -247,7 +247,7 @@ int main()
         cout << S;
         
         cout << endl << "--------------------------------------------------------" << endl;
-        cout << endl << "\t\tFunkcje dodatkowe - helpery" << endl;
+        cout << endl << "\t\tFunkcje dodatkowe += helpery" << endl;
         cout << endl << "--------------------------------------------------------" << endl;
         
         cout << "-1%2 = " << -1%2 << endl;
@@ -271,14 +271,14 @@ int main()
         X1.setData("2,1,3,1,4,1,6,1,8,1,9,1,11,1,12,1,13,1");
         Y1.setData("12,11,15,17,16,19,21,20,19");
         
-        cout << "Macierz X1" << X1 << endl;
-        cout << "Macierz Y1" << Y1 << endl;
+        cout << "Macierz X1:" << X1 << endl;
+        cout << "Macierz Y1:" << Y1 << endl;
         
         Result = X1.transpose() * X1;
         Result = Result^-1;
         Result = Result * (X1.transpose() * Y1);
         
-        cout << "Wynik" << Result << endl;
+        cout << "Wynik:" << Result << endl;
         
         cout << endl << "********************************************************";
         cout << endl << "******************   End of tests   ********************";

@@ -26,12 +26,12 @@ using namespace std;
  * Functions:
  *      - Set Data (Specific number, Random values, String of data)
  *      - Change sign of Matrix for opposite (example: -A)
- *      - Add (a+b, a+=b)
- *      - Subtract (ex: a-b, a-=b)
- *      - Multiply (ex: a*b, 3*a, a*2.563)
- *      - Power (ex: a^6, a^-1, a^0, a^2+6,)
- *      - Transpose ()
- *      - Inverse (ex: a^-1)
+ *      - Add (A+B, A+=B)
+ *      - Subtract (ex: A-B, A-=B)
+ *      - Multiply (ex: A*B, 3*A, A*3, A*2.563 etc.)
+ *      - Power (ex: A^6, A^-1, A^0)
+ *      - Transpose the Matrix (ex: A.transpose() )
+ *      - Inverse the Matrix (ex: A^-1)
  *      - Calculate determinant of the Matrix
  *      - Calculate moda of the Matrix
  */
@@ -40,7 +40,7 @@ using namespace std;
  * Constructors & Destructors
  */
 
-/* TODO !!!!!!!!!!!!!!!!!!!!!!!!!!
+/* TODO !
  * Create Matrix with data
  * 
  * Note!!! Always end with semicolon ;
