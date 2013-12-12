@@ -31,7 +31,7 @@ What more TODO:
 
 It's two way to install.
 
-  - Recommended: Use [Git](http://git-scm.com/) and run `git clone git@bitbucket.org:egel/lsm.git` in terminal :)
+  - **Recommended**: Use [Git](http://git-scm.com/) and run `git clone git@bitbucket.org:egel/lsm.git` in terminal
   - Download all files in package and extract it.
 
 
