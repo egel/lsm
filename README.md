@@ -13,14 +13,14 @@ This little project has been built with [NetBeans IDE 7.4](https://netbeans.org/
 
 Features:
 
-  - Overwrite minor group of operators `()`, `=`, `+`, `+=`, `-`, `-=`, `<<`, `*`, `^`,
-  - Add some specyfic function to the class Matrix like `transpose` or `determinant`,
-  - Add some helper functions to glue all friend and build-in functions together, like:
+  - Overwritten minor group of operators `()`, `=`, `+`, `+=`, `-`, `-=`, `<<`, `*`, `^`,
+  - Added some specyfic functions to the class Matrix like `transpose` or `determinant`,
+  - Added some helper functions to glue all friend and build-in functions together, like:
     * isEvenNumber
     * isNegativeNumber
     * highestValue
     * isMatrixSizeEqual
-    * etc ;)
+    * etc. ;)
 
 What more TODO:
 
