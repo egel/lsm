@@ -1,16 +1,13 @@
 # Least Squares Method
-
-This very simple program was written in C++ to calculate method of least squares (regression analysis).
-It's based on main matrix class to estimate line regresion of inputed data.
+This very simple program was written in C++ to calculate least squares method (for regression analysis).
+It's based on main matrix class to estimate line regresion of inputed data into matrices.
 
 
 ## IDE
-
 This little project has been built with [NetBeans IDE 7.4](https://netbeans.org/).
 
 
 ## Matrix Class
-
 Features:
 
   - Overwritten minor group of operators `()`, `=`, `+`, `+=`, `-`, `-=`, `<<`, `*`, `^`,
