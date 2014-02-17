@@ -26,7 +26,7 @@ What more TODO:
 
 ## Download
 
-It's two way to install.
+It's two way to download.
 
   - **Recommended**: Use [Git](http://git-scm.com/) and run `git clone git@github.com:egel/lsm.git` in terminal
   - Download all files in package and extract it.
